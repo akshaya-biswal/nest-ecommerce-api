@@ -13,3 +13,6 @@ export class UsersController {
     return req.user;
   }
 }
+
+// QA
+// how i am getting user in the request ?

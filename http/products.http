@@ -1,0 +1,16 @@
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Nike Shoes 7",
+  "description": "Lightweight running shoes",
+  "price": 99.99,
+  "stock": 25,
+  "imageUrl": "https://picsum.photos/300"
+}
+
+GET http://localhost:3000/products
+
+GET http://localhost:3000/products/2
+
+DELETE http://localhost:3000/products/3
