@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+
+import { JwtAuthGuard } from '../auth/jwt.guard';
 
 @Controller('users')
-export class UsersController {}
+export class UsersController {
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  getProfile(@Req() req) {
+    return req.user;
+  }
+}
