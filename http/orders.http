@@ -6,3 +6,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsI
 
 GET http://localhost:3000/orders/all
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyOTkzMzgzLCJleHAiOjE3NDI5OTY5ODN9.n3ixqLPMOnOxG4A4LxonrJderfQMa2P3TqSIcIgG12c
+
+PATCH http://localhost:3000/orders/1/status
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyOTkzMzgzLCJleHAiOjE3NDI5OTY5ODN9.n3ixqLPMOnOxG4A4LxonrJderfQMa2P3TqSIcIgG12c
+Content-Type: application/json
+
+{
+  "status": "paid"
+}

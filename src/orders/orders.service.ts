@@ -1,6 +1,10 @@
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 
 import { OrderItem } from './order-item.entity';
 import { Order, OrderStatus } from './order.entity';
@@ -53,5 +57,23 @@ export class OrdersService {
 
   async getAllOrders() {
     return this.orderRepo.find({ order: { createdAt: 'DESC' } });
+  }
+
+  async updateOrderStatus(orderId: number, status: OrderStatus) {
+    const order = await this.orderRepo.findOne({ where: { id: orderId } });
+    if (!order) throw new NotFoundException('Order not found');
+
+    // Validate status change flow
+    if (
+      order.status === OrderStatus.CANCELLED ||
+      order.status === OrderStatus.PAID
+    ) {
+      throw new BadRequestException(
+        'Cannot update a completed or cancelled order',
+      );
+    }
+
+    order.status = status;
+    return this.orderRepo.save(order);
   }
 }
