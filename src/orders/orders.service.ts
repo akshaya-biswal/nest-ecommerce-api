@@ -2,6 +2,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -74,6 +75,21 @@ export class OrdersService {
     }
 
     order.status = status;
+    return this.orderRepo.save(order);
+  }
+
+  async payForOrder(userId: number, orderId: number) {
+    const order = await this.orderRepo.findOne({ where: { id: orderId } });
+
+    if (!order) throw new NotFoundException('Order not found');
+    if (order.userId !== userId) throw new ForbiddenException('Access denied');
+    if (order.status === OrderStatus.PAID)
+      throw new BadRequestException('Order already paid');
+    if (order.status === OrderStatus.CANCELLED)
+      throw new BadRequestException('Cannot pay a cancelled order');
+
+    // Simulate successful payment
+    order.status = OrderStatus.PAID;
     return this.orderRepo.save(order);
   }
 }

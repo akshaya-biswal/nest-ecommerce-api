@@ -48,4 +48,9 @@ export class OrdersController {
   ) {
     return this.ordersService.updateOrderStatus(+id, status);
   }
+
+  @Patch(':id/pay')
+  payForOrder(@Req() req, @Param('id') id: string) {
+    return this.ordersService.payForOrder(req.user.userId, +id);
+  }
 }
