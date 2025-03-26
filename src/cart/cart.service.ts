@@ -70,4 +70,11 @@ export class CartService {
     await this.itemRepo.delete(item.id);
     return this.getCart(userId);
   }
+
+  async clearCart(userId: number) {
+    const cart = await this.getCart(userId);
+    if (cart.items.length > 0) {
+      await this.itemRepo.delete({ cart: { id: cart.id } });
+    }
+  }
 }

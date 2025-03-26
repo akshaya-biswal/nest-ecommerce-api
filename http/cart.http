@@ -1,6 +1,6 @@
 POST http://localhost:3000/cart
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyOTc5OTYxLCJleHAiOjE3NDI5ODM1NjF9.9Vaye0BTYKaLybF0t3tb1aX1Biw9szgxVNTVnfPaHVA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyOTkzMzgzLCJleHAiOjE3NDI5OTY5ODN9.n3ixqLPMOnOxG4A4LxonrJderfQMa2P3TqSIcIgG12c
 {
   "productId": 5,
   "quantity": 2
