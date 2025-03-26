@@ -2,18 +2,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 import {
-  Controller,
+  Put,
+  Req,
   Get,
   Post,
   Body,
   Param,
   Delete,
-  Put,
   UseGuards,
-  Req,
+  Controller,
 } from '@nestjs/common';
+
 import { CartService } from './cart.service';
 import { JwtAuthGuard } from '../auth/jwt.guard';
+import { AddCartItemDto } from './dto/add-cart-item.dto';
+import { UpdateCartItemDto } from './dto/update-cart-item.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('cart')
@@ -26,7 +29,7 @@ export class CartController {
   }
 
   @Post()
-  addItem(@Req() req, @Body() body: { productId: number; quantity: number }) {
+  addItem(@Req() req, @Body() body: AddCartItemDto) {
     return this.cartService.addItem(
       req.user.userId,
       body.productId,
@@ -35,10 +38,7 @@ export class CartController {
   }
 
   @Put()
-  updateItem(
-    @Req() req,
-    @Body() body: { productId: number; quantity: number },
-  ) {
+  updateItem(@Req() req, @Body() body: UpdateCartItemDto) {
     return this.cartService.updateItem(
       req.user.userId,
       body.productId,

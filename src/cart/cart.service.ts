@@ -1,8 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Cart } from './cart.entity';
-import { CartItem } from './cart-item.entity';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, NotFoundException } from '@nestjs/common';
+
+import { Cart } from './entity/cart.entity';
+import { CartItem } from './entity/cart-item.entity';
+
 import { ProductsService } from '../products/products.service';
 
 @Injectable()

@@ -7,9 +7,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import { OrderItem } from './order-item.entity';
-import { Order, OrderStatus } from './order.entity';
+// import { OrderItem } from './order-item.entity';
+// import { Order, OrderStatus } from './order.entity';
 import { CartService } from '../cart/cart.service';
+
+import { Order, OrderStatus } from './entity/order.entity';
+import { OrderItem } from './entity/order-item.entity';
 
 @Injectable()
 export class OrdersService {

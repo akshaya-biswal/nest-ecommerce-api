@@ -15,7 +15,7 @@ import { Roles } from '../auth/roles.decorator';
 import { OrdersService } from './orders.service';
 import { JwtAuthGuard } from '../auth/jwt.guard';
 import { RolesGuard } from '../auth/roles.guard';
-import { OrderStatus } from './order.entity';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('orders')
@@ -44,9 +44,9 @@ export class OrdersController {
   @Patch(':id/status')
   updateOrderStatus(
     @Param('id') id: string,
-    @Body('status') status: OrderStatus,
+    @Body() body: UpdateOrderStatusDto,
   ) {
-    return this.ordersService.updateOrderStatus(+id, status);
+    return this.ordersService.updateOrderStatus(+id, body.status);
   }
 
   @Patch(':id/pay')
