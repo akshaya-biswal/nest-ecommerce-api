@@ -35,6 +35,12 @@ export class ProductsService {
     await this.findOne(id); // Ensure exists
     await this.productRepo.delete(id);
   }
+
+  async getByCategory(categoryId: number): Promise<Product[]> {
+    return this.productRepo.find({
+      where: { categoryId },
+    });
+  }
 }
 
 // QA

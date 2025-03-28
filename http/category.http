@@ -1,0 +1,15 @@
+POST http://localhost:3000/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQzMTUzMjQ5LCJleHAiOjE3NDMxNTY4NDl9.KKszPCYZ-tKHjhVbBoctCij26Hp-lijIFrUhLKZEExg
+
+{
+  "name": "Shoe"
+}
+
+GET http://localhost:3000/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQzMTUzMjQ5LCJleHAiOjE3NDMxNTY4NDl9.KKszPCYZ-tKHjhVbBoctCij26Hp-lijIFrUhLKZEExg
+
+GET http://localhost:3000/categories/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQzMTUzMjQ5LCJleHAiOjE3NDMxNTY4NDl9.KKszPCYZ-tKHjhVbBoctCij26Hp-lijIFrUhLKZEExg
