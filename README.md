@@ -97,3 +97,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+Step 12: Wishlist Module
+✅ Save products they like (but don't want to buy yet)
+✅ View their wishlist
+❌ Not duplicate items
+❌ Not add to wishlist if already in cart/order (optional, advanced)
