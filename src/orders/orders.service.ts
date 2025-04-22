@@ -13,6 +13,7 @@ import { CartService } from '../cart/cart.service';
 
 import { Order, OrderStatus } from './entity/order.entity';
 import { OrderItem } from './entity/order-item.entity';
+import { CouponsService } from 'src/coupons/coupons.service';
 
 @Injectable()
 export class OrdersService {
@@ -20,9 +21,10 @@ export class OrdersService {
     @InjectRepository(Order) private orderRepo: Repository<Order>,
     @InjectRepository(OrderItem) private itemRepo: Repository<OrderItem>,
     private readonly cartService: CartService,
+    private readonly couponsService: CouponsService,
   ) {}
 
-  async placeOrder(userId: number): Promise<Order> {
+  async placeOrder(userId: number, couponCode?: string): Promise<Order> {
     const cart = await this.cartService.getCart(userId);
     if (!cart.items.length) throw new NotFoundException('Cart is empty');
 
@@ -35,15 +37,28 @@ export class OrdersService {
       return orderItem;
     });
 
-    const total = items.reduce(
+    let total = items.reduce(
       (sum, item) => sum + Number(item.price) * item.quantity,
       0,
     );
+
+    // 💸 Handle coupon
+    let discountAmount = 0;
+    let appliedCoupon: string | undefined = undefined;
+
+    if (couponCode) {
+      const coupon = await this.couponsService.findByCode(couponCode);
+      discountAmount = (Number(coupon.discount) / 100) * total;
+      total = total - discountAmount;
+      appliedCoupon = coupon.code;
+    }
 
     const order = this.orderRepo.create({
       userId,
       items,
       total,
+      discountAmount,
+      couponCode: appliedCoupon,
       status: OrderStatus.PENDING,
     });
 

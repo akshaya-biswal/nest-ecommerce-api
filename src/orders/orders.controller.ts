@@ -23,8 +23,8 @@ export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
-  placeOrder(@Req() req) {
-    return this.ordersService.placeOrder(req.user.userId);
+  placeOrder(@Req() req, @Body('couponCode') couponCode?: string) {
+    return this.ordersService.placeOrder(req.user.userId, couponCode);
   }
 
   @Get()

@@ -8,12 +8,14 @@ import { OrdersController } from './orders.controller';
 import { CartModule } from '../cart/cart.module';
 import { ProductsModule } from '../products/products.module';
 import { OrdersService } from './orders.service';
+import { CouponsModule } from 'src/coupons/coupons.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Order, OrderItem]),
     CartModule,
     ProductsModule,
+    CouponsModule,
   ],
   providers: [OrdersService],
   controllers: [OrdersController],
