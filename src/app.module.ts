@@ -9,6 +9,7 @@ import { CartModule } from './cart/cart.module';
 import { OrdersModule } from './orders/orders.module';
 import { CategoriesModule } from './categories/categories.module';
 import { WishlistModule } from './wishlist/wishlist.module';
+import { AddressesModule } from './addresses/addresses.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { WishlistModule } from './wishlist/wishlist.module';
     OrdersModule,
     CategoriesModule,
     WishlistModule,
+    AddressesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
