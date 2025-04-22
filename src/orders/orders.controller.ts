@@ -9,6 +9,7 @@ import {
   Param,
   UseGuards,
   Controller,
+  Query,
 } from '@nestjs/common';
 
 import { Roles } from '../auth/roles.decorator';
@@ -52,5 +53,16 @@ export class OrdersController {
   @Patch(':id/pay')
   payForOrder(@Req() req, @Param('id') id: string) {
     return this.ordersService.payForOrder(req.user.userId, +id);
+  }
+
+  @Get()
+  async getPaginatedOrders(
+    @Query('page') page: string,
+    @Query('limit') limit: string,
+  ) {
+    const pageNumber = parseInt(page) || 1;
+    const limitNumber = parseInt(limit) || 10;
+
+    return this.ordersService.getPaginatedOrders(pageNumber, limitNumber);
   }
 }

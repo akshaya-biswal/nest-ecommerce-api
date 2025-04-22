@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
@@ -25,11 +26,6 @@ export class ProductsController {
   @Post()
   create(@Body() body: CreateProductDto) {
     return this.productsService.create(body);
-  }
-
-  @Get()
-  findAll(): Promise<Product[]> {
-    return this.productsService.findAll();
   }
 
   @Get(':id')
@@ -54,5 +50,25 @@ export class ProductsController {
   @Get('/category/:categoryId')
   getByCategory(@Param('categoryId') categoryId: string) {
     return this.productsService.getByCategory(+categoryId);
+  }
+
+  // @Get()
+  // findAll(): Promise<Product[]> {
+  //   return this.productsService.findAll();
+  // }
+
+  @Get()
+  async findAll(
+    @Query('page') page: string, // Default page is 1
+    @Query('limit') limit: string, // Default limit is 10
+  ) {
+    // If page and limit are provided, return paginated products
+    if (page || limit) {
+      const pageNumber = parseInt(page) || 1;
+      const limitNumber = parseInt(limit) || 10;
+      return this.productsService.getPaginatedProducts(pageNumber, limitNumber);
+    }
+    // Otherwise, return all products
+    return this.productsService.findAll();
   }
 }

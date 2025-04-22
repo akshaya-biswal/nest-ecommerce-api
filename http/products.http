@@ -1,19 +1,22 @@
 POST http://localhost:3000/products
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQzMTUzMjQ5LCJleHAiOjE3NDMxNTY4NDl9.KKszPCYZ-tKHjhVbBoctCij26Hp-lijIFrUhLKZEExg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ1MzQ3ODk0LCJleHAiOjE3NDUzNTE0OTR9.g0dZqBjnf_pJk6HXN7vpPcEkCzxakSE-7F9dtpjBOZQ
 {
-  "name": "Nike Shoes 1",
+  "name": "Laptop",
   "description": "Lightweight running shoes",
   "price": 99.99,
   "stock": 25,
   "imageUrl": "https://picsum.photos/300",
     "categoryId": 1
 }
+
 GET http://localhost:3000/products
+
+GET http://localhost:3000/products?page=1&limit=2
 
 GET http://localhost:3000/products/2
 
 DELETE http://localhost:3000/products/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyOTU3ODYwLCJleHAiOjE3NDI5NjE0NjB9.YiNSTYXBGQleZgy9OT5uLLsXJkvp2YYbI7DilFOzQaI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ1MzQ3ODk0LCJleHAiOjE3NDUzNTE0OTR9.g0dZqBjnf_pJk6HXN7vpPcEkCzxakSE-7F9dtpjBOZQ
 
 GET  http://localhost:3000/products/category/1

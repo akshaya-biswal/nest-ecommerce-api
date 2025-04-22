@@ -41,6 +41,27 @@ export class ProductsService {
       where: { categoryId },
     });
   }
+
+  // Get paginated products
+  async getPaginatedProducts(page: number = 1, limit: number = 10) {
+    const [products, total] = await this.productRepo.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    const totalPages = Math.ceil(total / limit);
+
+    return {
+      success: true,
+      data: products,
+      meta: {
+        total,
+        totalPages,
+        currentPage: page,
+        limit,
+      },
+    };
+  }
 }
 
 // QA

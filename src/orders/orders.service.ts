@@ -110,4 +110,24 @@ export class OrdersService {
     order.status = OrderStatus.PAID;
     return this.orderRepo.save(order);
   }
+
+  async getPaginatedOrders(page: number = 1, limit: number = 10) {
+    const [orders, total] = await this.orderRepo.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    const totalPages = Math.ceil(total / limit);
+
+    return {
+      success: true,
+      data: orders,
+      meta: {
+        total,
+        totalPages,
+        currentPage: page,
+        limit,
+      },
+    };
+  }
 }
